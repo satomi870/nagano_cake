@@ -2,19 +2,20 @@
 
 
 <table>
-　<thead>
-　   <tr>
+ <thead>
+　  <tr>
 　       <th>商品iD</th>
-　       <th>商品名</th>
+　       <th>商品名></th>
 　       <th>税抜価格</th>
 　   </tr> 
 　</thead>
   <%@items.each do |item|%>
   <tbody>
       <tr><td><%=item.id%></td>
-          <td><%=item.name%></td>
+          <td><%=link_to item.name,admin_item_path(item)%></td>
           <td><%=item.price%></td>
       </tr>
   </tbody>
   <%end%>
 </table>
+

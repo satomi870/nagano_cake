@@ -2,24 +2,26 @@
 
 <%=form_with model: @genre,url: admin_genres_path do |f| %>
 
-<h3>ジャンル名</h3> 
-<%=f.text_field:name%>
 
-<%=f.submit'新規登録'%>
-
+ <table>
+   <tr><th>ジャンル名</th><td><%=f.text_field:name%></td><td><%=f.submit'新規登録'%></td></tr>
+ </table>
 <%end%>
-<table>
-  <thead>
+
+ <table>
+    <thead>
       <tr>
-         <th>ジャンル</th>
+        <th>ジャンル</th>
       </tr>
-  </thead>
+    </thead>
   <%@genres.each do |genre|%>
-  <tbody>
+    <tbody>
       <tr>
         <td><%=genre.name%></td>
         <td><%=link_to"編集する",edit_admin_genre_path(genre.id)%></td>
       </tr>
-  </tbody>
-<%end%>
+    </tbody>
+  <%end%>
 </table>
+
+ 
