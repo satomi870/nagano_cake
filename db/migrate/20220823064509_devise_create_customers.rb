@@ -2,6 +2,9 @@
 
 class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
   def change
+    add_column :customers, :is_deleted, :boolean, default: false
+  end  
+end  
     create_table :customers do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
@@ -38,7 +41,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :postal_code
       t.string :address
       t.string :telephone_number
-      t.string :is_active
+      t.boolean :is_active
 
 
       t.timestamps null: false
@@ -48,5 +51,4 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
     add_index :customers, :reset_password_token, unique: true
     # add_index :customers, :confirmation_token,   unique: true
     # add_index :customers, :unlock_token,         unique: true
-  end
-end
+ 
