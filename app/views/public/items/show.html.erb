@@ -1,2 +1,16 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<%=image_tag @item.get_image(200,130)%>
+<table>
+    
+    <tr><th></th><td><%=@item.name%></td></tr>
+    
+    <tr><th></th><td><%=@item.introduction%></td></tr>
+    
+    <tr><th></th><td></td></tr>
+    
+    <tr><th></th><td>¥<%= @item.add_tax_price.to_s(:delimited)%>(税込)</td></tr>
+</table>    
+
+<%=form_with model: @cart_item,url: items_path do |f| %>
+ <%= f.hidden_field :item_id, :value => @item.id%>
+ <%= f.select :amount, *[1..100] %>
+<%end%> 

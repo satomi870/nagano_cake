@@ -4,7 +4,6 @@ class Public::CartItemsController < ApplicationController
   end
 
   def index
-  @cart_items=@customer.cart_items
   
   end
 
