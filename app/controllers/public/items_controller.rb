@@ -1,6 +1,8 @@
 class Public::ItemsController < ApplicationController
   def new
   end
+  
+  
 
   def index
     @items=Item.all
@@ -13,4 +15,6 @@ class Public::ItemsController < ApplicationController
 
   def edit
   end
+  
+  
 end

@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
+    
  
   scope module: :public do
     resources :items,only:[:new, :create, :index, :show ,:edit,:update]
-    resources :cart_items,only:[:new, :create, :index, :show ,:edit,:update]
-    
+    resources :cart_items,only:[:new, :create, :index, :show ,:edit,:update,:destroy]
+    resources :orders,only:[:new, :create, :index, :show ]
+    delete :cart_items, to: 'cart_items#destroy_all' , as: 'all'
   end
   
 
-  scope module: :admin do
+  
+  
+
+  namespace :admin do
      resources :orders,only:[:new, :create, :index, :show ,:edit,:update]
      resources :customers,only:[:new, :create, :index, :show ,:edit,:update]
      resources :items,only:[:new, :create, :index, :show ,:edit,:update]

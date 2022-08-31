@@ -10,7 +10,8 @@
     <tr><th></th><td>¥<%= @item.add_tax_price.to_s(:delimited)%>(税込)</td></tr>
 </table>    
 
-<%=form_with model: @cart_item,url: items_path do |f| %>
+<%=form_with model: @cart_item,url: cart_items_path do |f| %>
  <%= f.hidden_field :item_id, :value => @item.id%>
  <%= f.select :amount, *[1..100] %>
+ <%=f.submit'カートに入れる'%>
 <%end%> 

@@ -1,0 +1,33 @@
+<h2>ショッピングカート</h2>
+<%=link_to "カートを空にする",all_path,method: :delete%>
+
+<table>
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+        </tr>
+    </thead>
+    <tbody>
+         <%@cart_items.each do |cart_item| %>
+        <tr>
+            <td><%=cart_item.item.name%></td> 
+            <td><%=cart_item.item.with_tax_price%></td> 
+            <td><%=form_with model: cart_item,url: cart_item_path(cart_item.id) do |f| %>
+                <%= f.select :amount, *[1..100] %>
+                <%=f.submit '変更'%>
+                <%end%>
+            </td>
+            <td><%=cart_item.subtotal%></td>
+            <td><%=link_to "削除する", cart_item_path(cart_item.id),method: :delete%></td>
+            <%@sum+=cart_item.subtotal%> <%#@sum=@sum+cart_item.subtotal  a = a + b この二つのaは同じ値. この一文で完結するのではなく繰り返しでどんどん足していってる%> 
+        </tr>   
+        <%end%>
+    </tbody>     
+  </table>     
+  
+<table>
+            <tr><th>合計金額</th><td><%=@sum%></td></tr> <%#上のやつは%=じゃないからただ計算してるだけだからここで表示してる%>
+</table>
