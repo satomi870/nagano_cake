@@ -4,7 +4,7 @@ class Public::CartItemsController < ApplicationController
   end
   
   def create
-    #この一文がないと誰のカート内商品かわからないまた投稿するときは必ず書いたカラムを全て投稿しないといけない
+    
     if @cart_item=CartItem.find_by(item_id:params[:cart_item][:item_id],customer_id:current_customer.id)#すでにカートにある場合の処理　＠cart_itemはなくてもいい
     @new_amount=@cart_item.amount+params[:cart_item][:amount].to_i #@new_amountはただの左右合わせてできた数　左　元々カートにある数　　右　フォームから送られてきた数
     @cart_item.update(amount: @new_amount)    

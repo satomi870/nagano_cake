@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items,only:[:new, :create, :index, :show ,:edit,:update]
     resources :cart_items,only:[:new, :create, :index, :show ,:edit,:update,:destroy]
-    resources :orders,only:[:new, :create, :index, :show ]
-    delete :cart_items, to: 'cart_items#destroy_all' , as: 'all'
+    post 'orders/confirm'=>'orders#confirm'
+    resources :orders,only:[:new, :create, :index, :show ,:edit,:update,:destro]
+    delete 'cart_items/destroy_all' =>'cart_items#destroy_all' , as: 'all'
   end
   
 
