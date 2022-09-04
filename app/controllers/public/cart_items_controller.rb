@@ -29,7 +29,7 @@ class Public::CartItemsController < ApplicationController
 
  #editコントローラはいらない　数量の変更だけをする専用のページがあればいるが今回ないから　editコントにインスタンス書いたところでedit viewは何も書いてないから書いても意味ない
   
-  def update
+    def update
     @cart_item=CartItem.find(params[:id])
     @cart_item.update(cart_items_params)
     redirect_to cart_items_path
