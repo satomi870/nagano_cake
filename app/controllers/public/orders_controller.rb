@@ -4,20 +4,19 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-     @order=Order.new(order_params)
-     @order.save
-     cart_items =current_customer.cart_items.all
-   　cart_items.each do |cart_item|
-   　  order_detail = OrdeDetail.new
-   　  order_detail.item_id = cart_item.item_id
-   　  order_detail.amount=cart_item.amount
-   　  order_detail.price=cart_item.price
-   　  order_detail.save
-     current_user.cart_items.destroy_all  
-   　
-   　redirect_to order_thanks_path
+    @order=Order.new(order_params)
+    @order.save
+    cart_items =current_customer.cart_items.all
+    cart_items.each do |cart_item|
+    @order_detail = OrderDetail.new
+    @order_detail.item_id = cart_item.item_id
+    @order_detail.amount=cart_item.amount
+    @order_detail.unit_price=cart_item.item.price
+    @order_detail.save
+  end 
+     current_customer.cart_items.destroy_all  
+     redirect_to orders_thanks_path
   end
-  
   def confirm
     @order=Order.new(order_params) # ユーザーが行った注文をDBで管理するためnewで注文モデルを生成する
     @cart_items=current_customer.cart_items
@@ -39,16 +38,12 @@ class Public::OrdersController < ApplicationController
       @order.postal_code=params[:order][:postal_code]
       @order.address=params[:order][:address]
       @order.name=params[:order][:name]
-      
-   
-   end 
+    end 
    end
-  end
   
   def thanks
     
   end  
-end
   
   
   private
@@ -56,4 +51,4 @@ end
   def order_params
     params.require(:order).permit(:payment_method,:postal_code,:address,:name,:billing_amount)
   end
-
+end

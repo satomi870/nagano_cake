@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
     
  
+  namespace :admin do
+    get 'order_details/show'
+  end
   scope module: :public do
     resources :items,only:[:new, :create, :index, :show ,:edit,:update]
     resources :cart_items,only:[:new, :create, :index, :show ,:edit,:update,:destroy]
