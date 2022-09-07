@@ -12,6 +12,6 @@
           making_status:
           shipped: "発送済み"
           impossible_manufacture: '着手不可'
-        　waiting_manufacture: '製作待ち'
-        　manufacturing: '製作中'
-        　finish: '製作完了'
+          waiting_manufacture: '製作待ち'
+          manufacturing: '製作中'
+          finish: '製作完了'
