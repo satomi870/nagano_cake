@@ -34,12 +34,12 @@ class Public::CartItemsController < ApplicationController
     @cart_item.update(cart_items_params)
     redirect_to cart_items_path
     
-  end
- def destroy
+    end
+    def destroy
     @cart_item=CartItem.find(params[:id])
     @cart_items.destroy
     redirect_to cart_items_path
-  end  
+    end  
   
  def destroy_all
     current_customer.cart_items.destroy_all

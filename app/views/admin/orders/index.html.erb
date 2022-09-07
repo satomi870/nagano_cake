@@ -12,10 +12,10 @@
     <%@orders.each do |order| %>
     <tbody>
         <tr>
-            <td><%order.created_at%></td>
-            <td><%order.name%></td>
-            <td><%order.detail.amount%></td>
-            
+            <td><%=link_to order.created_at,admin_order_path(order.id)%></td>
+            <td><%=order.customer.last_name%></td> <%#customer使うにはbelongの記述必要#%>
+            <td><%=order.order_details.sum(:amount)%></td>
+            <td><%=order.order_status%></td>
         </tr>
     </tbody>
     <%end%>

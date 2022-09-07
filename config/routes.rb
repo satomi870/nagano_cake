@@ -18,10 +18,11 @@ Rails.application.routes.draw do
   
 
   namespace :admin do
-     resources :orders,only:[:new, :create, :index, :show ,:edit,:update]
-     resources :customers,only:[:new, :create, :index, :show ,:edit,:update]
+     resources :orders,only:[:new, :create, :index, :show ,:update]
+     resources :customers,only:[ :create, :index, :show ,:edit,:update]
      resources :items,only:[:new, :create, :index, :show ,:edit,:update]
-     resources :genres,only:[:new, :create, :index, :edit,:update]
+     resources :genres,only:[:create, :index, :edit,:update]
+     resources :order_details,only:[:index, :show]
   end
   
   

@@ -1,6 +1,6 @@
 <%=@customer.last_name%><%=@customer.first_name%><h2>さんの会員情報編集</h2>
 
-<%=form_with model: @customer,url: customer_path,method: :patch do |f| %>
+<%=form_with model: @customer,url: admin_customer_path,method: :patch do |f| %>
 
 <table>
     <tr><th>会員ID</th><td><%=@customer.id%></td></tr>

@@ -4,15 +4,16 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order=Order.new(order_params)
-    @order.save
+    @order=current_customer.orders.new(order_params)
+    @order.save!
     cart_items =current_customer.cart_items.all
     cart_items.each do |cart_item|
     @order_detail = OrderDetail.new
-    @order_detail.item_id = cart_item.item_id
+    @order_detail.order_id=@order.id #アソシエーション　order_idがわからないと注文一覧で出せない
+    @order_detail.item_id = cart_item.item_id#アソシエーション
     @order_detail.amount=cart_item.amount
     @order_detail.unit_price=cart_item.item.price
-    @order_detail.save
+    @order_detail.save!
   end 
      current_customer.cart_items.destroy_all  
      redirect_to orders_thanks_path
@@ -39,16 +40,18 @@ class Public::OrdersController < ApplicationController
       @order.address=params[:order][:address]
       @order.name=params[:order][:name]
     end 
+    
+   @order.order_status="waiting" #変数@orderのorder_statusカラムに”入金待ち(英語)”を代入する→他のpostal_codeカラムと同じようにviewのhidden_fieldに入れる
    end
   
   def thanks
-    
+  
   end  
   
   
   private
   
   def order_params
-    params.require(:order).permit(:payment_method,:postal_code,:address,:name,:billing_amount)
+    params.require(:order).permit(:payment_method,:postal_code,:address,:name,:billing_amount,:postage,:order_status)#ここに入っているものしか受付ないから絶対に足さないといけない
   end
 end
