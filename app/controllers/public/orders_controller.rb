@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
     cart_items =current_customer.cart_items.all
     cart_items.each do |cart_item|
     @order_detail = OrderDetail.new
-    @order_detail.order_id=@order.id #アソシエーション　order_idがわからないと注文一覧で出せない
+    @order_detail.order_id=@order.id #アソシエーション order_idがわからないと注文一覧で出せない
     @order_detail.item_id = cart_item.item_id#アソシエーション
     @order_detail.amount=cart_item.amount
     @order_detail.unit_price=cart_item.item.price
@@ -20,13 +20,13 @@ class Public::OrdersController < ApplicationController
   end
   def confirm
     @order=Order.new(order_params) # ユーザーが行った注文をDBで管理するためnewで注文モデルを生成する
-    @cart_items=current_customer.cart_items
+    @cart_items=current_customer.cart_items #?
      @sum=0
     @order.postage=800
     
     if params[:order][:select_address]=="0"
     @order.postal_code=current_customer.postal_code
-    @order.address=current_customer.address
+    @order.address=current_customer.address 
     @order.name=current_customer.first_name+current_customer.last_name
     
     elsif params[:order][:select_address]=="1"

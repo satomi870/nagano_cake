@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.top_image{
+    height: 220px;
+    background-image: url(cake.jpeg);
+    background-size: cover;
+    width:20%;
+    background-position: center;
+}
