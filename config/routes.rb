@@ -4,7 +4,7 @@ Rails.application.routes.draw do
  
   
   scope module: :public do
-    resources :customers,only:[:show ,:edit,:update]
+    resource :customers,only:[:show ,:edit,:update]
     resources :items,only:[:new, :create, :index, :show ,:edit,:update]
     resources :cart_items,only:[:new, :create, :index, :show ,:edit,:update,:destroy]
     post 'orders/confirm'=>'orders#confirm'
