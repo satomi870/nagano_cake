@@ -4,7 +4,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order=current_customer.orders.new(order_params)
+    @order=current_customer.orders.new(order_params)#アソシエーション書き方2
     @order.save!
     cart_items =current_customer.cart_items.all
     cart_items.each do |cart_item|
@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
   end
   def confirm
     @order=Order.new(order_params) # ユーザーが行った注文をDBで管理するためnewで注文モデルを生成する
-    @cart_items=current_customer.cart_items #?
+    @cart_items=current_customer.cart_items 
      @sum=0
     @order.postage=800
     

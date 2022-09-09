@@ -14,6 +14,13 @@ class Public::CustomersController < ApplicationController
      redirect_to customers_path
   end
   
+  def out
+      @customer=Customer.find_by(email:params[:email])
+      @customer.update(is_deleted: true)
+       reset_session
+       redirect_to public_homes_top_path
+  end
+  
   def customer_params
     params.require(:customer).permit(:last_name,:last_name_kana,:postal_code,:address,:telephone_number,:email)
   end

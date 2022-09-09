@@ -3,13 +3,17 @@ Rails.application.routes.draw do
  
  
   
+
   scope module: :public do
+    get'customers/quit'=>  'customers#quit'
+    patch'customers/out'=> 'customers#out'
     resource :customers,only:[:show ,:edit,:update]
+    resources :addresses,only:[:create, :index,:edit,:update,:destroy]
     resources :items,only:[:new, :create, :index, :show ,:edit,:update]
     resources :cart_items,only:[:new, :create, :index, :show ,:edit,:update,:destroy]
     post 'orders/confirm'=>'orders#confirm'
     get 'orders/thanks'=>'orders#thanks'
-    resources :orders,only:[:new, :create, :index, :show ,:edit,:update,:destro]
+    resources :orders,only:[:new, :create, :index, :show ,:edit,:update,:destroy]
     delete 'cart_items/destroy_all' =>'cart_items#destroy_all' , as: 'all'
   end
   
