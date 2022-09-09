@@ -1,17 +1,18 @@
 class Public::CartItemsController < ApplicationController
   def new
+    🔺#cart_itemはitemの子なのにアソシエーションの記述してない
     
   end
   
   def create
     
-    if @cart_item=CartItem.find_by(item_id:params[:cart_item][:item_id],customer_id:current_customer.id)#すでにカートにある場合の処理　＠cart_itemはなくてもいい
+    if @cart_item=CartItem.find_by(item_id:params[:cart_item][:item_id],customer_id:current_customer.id)#すでにカートにある場合の処理　＠cart_itemはなくてもいい🔺
     @new_amount=@cart_item.amount+params[:cart_item][:amount].to_i #@new_amountはただの左右合わせてできた数　左　元々カートにある数　　右　フォームから送られてきた数
-    @cart_item.update(amount: @new_amount)    
+    @cart_item.update(amount: @new_amount) 
 
     else 
     @cart_item=CartItem.new(cart_items_params) #この2行はない場合の処理だからelseに書く
-    @cart_item.customer_id=current_customer.id #この一文がないと誰のカート内商品かわからないまた投稿するときは必ず書いたカラムを全て投稿しないといけない#子モデルだから親誰なのかアソシエーションかく
+    @cart_item.customer_id=current_customer.id #この一文がないと誰のカート内商品かわからないまた投稿するときは必ず書いたカラムを全て投稿しないといけない#子モデルだから親誰なのかアソシエーションかく🔺
     @cart_item.save
     end
     redirect_to cart_items_path
