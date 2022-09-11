@@ -32,7 +32,7 @@ class Public::OrdersController < ApplicationController
     elsif params[:order][:select_address]=="1"
       @address=Address.find(params[:order][:address_id])
       @order.postal_code=@address.postal_code
-      @order.address=@address,address
+      @order.address=@address.address
       @order.name=@address.name
       
     elsif params[:order][:select_address]=="2" 
@@ -49,6 +49,9 @@ class Public::OrdersController < ApplicationController
   end  
   
   def index
+    @customer=current_customer
+    @orders=@customer.orders
+     
   end
   
   def show

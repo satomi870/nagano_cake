@@ -3,7 +3,7 @@ Rails.application.routes.draw do
  
  
   
-
+ 
   scope module: :public do
     get'customers/quit'=>  'customers#quit'
     patch'customers/out'=> 'customers#out'

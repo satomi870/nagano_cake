@@ -13,7 +13,7 @@
     <tbody>
          <%@cart_items.each do |cart_item| %>
         <tr>
-            <td><%=cart_item.item.name%></td>  <%#🔺 @cart_items=@customer.cart_itemsだけで取ってこれるの?%>
+            <td><%=cart_item.item.name%></td>  <%#🔺 @cart_items=@customer.cart_itemsだけでitemの情報取ってこれるの?%>
             <td><%=cart_item.item.with_tax_price%></td> <%#🔺他のモデルに書いたメソッドも使えるの?%>
             <td><%=form_with model: cart_item,url: cart_item_path(cart_item.id) do |f| %><%#変更ボタンだからupdate%>
                 <%= f.select :amount, *[1..100] %>
