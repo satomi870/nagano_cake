@@ -5,9 +5,12 @@ class Public::OrdersController < ApplicationController
   
   def create
     @order=current_customer.orders.new(order_params)#アソシエーション書き方2
+    
+    @cart_items =current_customer.cart_items.all
+    #@sum+@order.postage
+   
     @order.save!
-    cart_items =current_customer.cart_items.all
-    cart_items.each do |cart_item|
+    current_customer.cart_items.each do |cart_item|
     @order_detail = OrderDetail.new
     @order_detail.order_id=@order.id #アソシエーション order_idがわからないと注文一覧で出せない
     @order_detail.item_id = cart_item.item_id#アソシエーション
@@ -21,7 +24,6 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order=Order.new(order_params) # ユーザーが行った注文をDBで管理するためnewで注文モデルを生成する
     @cart_items=current_customer.cart_items 
-     @sum=0
     @order.postage=800
     
     if params[:order][:select_address]=="0"
@@ -50,12 +52,22 @@ class Public::OrdersController < ApplicationController
   
   def index
     @customer=current_customer
-    @orders=@customer.orders
+    @orders=@customer.orders.includes(:order_details,:items)
+    #@orders=current_customer.orders この一文でいける　throughの記述さえすれば中間テーブル難しく考える必要はない
+    #まずどのコントローラでもcurrent_customerはわざわざ定義しないで文に入れ込んじゃっていい　　モデルのthroughtの記述は絶対必要
      
   end
   
   def show
-  end
+    @order=Order.find(params[:id])
+    #@order=current_customer.orders #ある一人のさらにその詳細画面だからこの記述は使えない
+    #@orders=@customer.orders.includes(:order_details,:items)
+    @order_items=Order.find(params[:id]).order_details
+    @order_postage=800
+    
+    
+    
+  end 
   
   
   private

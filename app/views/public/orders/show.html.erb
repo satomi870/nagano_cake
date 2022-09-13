@@ -1,2 +1,42 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<h2>注文履歴詳細</h2>
+
+
+<h4>注文情報</h4>
+<table>
+<tr><th>注文日</th><td><%=@order.created_at%></td></tr><br>
+<tr><th>配送先</th><td><%=@order.postal_code%><br><%=@order.address%><br><%=@order.name%></td></tr><br>
+<tr><th>支払方法</th><td><%=@order.payment_method%></td></tr><br>
+<tr><th>ステータス<th><td><%=@order.order_status%></td></tr>
+</table>
+
+<h4>注文内容</h4>
+<table>
+    <thead>
+        <tr>
+           <th>商品</th>
+           <th>単価</th>
+           <th>個数</th>
+           <th>小計</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%@sum=0%>
+        <% @order_items.each do |order_item| %>
+        <tr>
+           <td><%=order_item.item.name%></td>
+           <td><%=order_item.item.with_tax_price%></td>
+           <td><%=order_item.amount%></td>
+           <td><%=order_item.item.with_tax_price*order_item.amount%></td>
+           <td><%@sum+=order_item.item.with_tax_price*order_item.amount%></td>
+        </tr>
+        <%end%>
+    </tbody>
+</table>  
+
+    <h4>請求情報</h4>
+    <table>
+        <tr><th>商品合計</th><td><%=@sum%></td></tr>
+        <tr><th>配達料</th><td><%=@order_postage%></td></tr>
+        <tr><th>ご請求額</th><td><%=@sum+@order_postage%></td></tr>
+    </table>
+</table>
