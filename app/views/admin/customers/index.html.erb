@@ -19,7 +19,12 @@
                 <%end%>
             </td>    
             <td><%=customer.email%></td>
-            <td><%=customer.is_active%></td>
+            <% if customer.is_deleted%>
+            <td>退会</td>
+            <%else%>
+            <td>有効</td>
+            <%end%>
+            
         </tr>
     </tbody>
     <%end%>

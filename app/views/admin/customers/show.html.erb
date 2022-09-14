@@ -8,7 +8,13 @@
     <tr><th>住所</th><td><%=@customer.address%></td></tr>
     <tr><th>電話番号</th><td><%=@customer.telephone_number%></td></tr>
     <tr><th>メールアドレス</th><td><%=@customer.email%></td></tr>
-    <tr><th>会員ステータス</th><td><%=@customer.is_active%></td></tr>
+    <tr><th>会員ステータス</th><%if @customer.is_deleted%>
+    <td>退会</td>
+    <%else%>
+    <td>有効</td>
+    <%end%>
+
+    
 </table>
 
 <%=link_to "編集する",edit_admin_customer_path(@customer)%>

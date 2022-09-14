@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
  
   scope module: :public do
+    root to:'homes#top' #どういうURLに飛ぶかは決まってるからアクション先だけ書く
+    get 'about'=>'homes#about'#左側は勝手に決めていい
     get'customers/quit'=>  'customers#quit'
     patch'customers/out'=> 'customers#out'
     resource :customers,only:[:show ,:edit,:update]
@@ -39,9 +41,4 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
-namespace :public do
-    get 'homes/top'
-    get 'homes/about',as:'about'
-  end
- 
-end  
+end

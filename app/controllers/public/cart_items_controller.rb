@@ -13,6 +13,7 @@ class Public::CartItemsController < ApplicationController
     else 
     @cart_item=CartItem.new(cart_items_params) #この2行はない場合の処理だからelseに書く
     @cart_item.customer_id=current_customer.id #この一文がないと誰のカート内商品かわからないまた投稿するときは必ず書いたカラムを全て投稿しないといけない#子モデルだから親誰なのかアソシエーションかく🔺
+    #上の一文はエンジニアが書くやつ?
     @cart_item.save
     end
     redirect_to cart_items_path

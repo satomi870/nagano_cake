@@ -1,23 +1,26 @@
-<%=form_with model: @order,url: orders_confirm_path,method: :post do |f| %> <%#確認画面におくりたいからcreateじゃない%>
+<h2>注文情報入力</h2>
 
-    <%=f.radio_button :payment_method,Order.payment_methods.key(0)%>
+<%=form_with model: @order,url: orders_confirm_path,method: :post do |f| %> <%#確認画面におくりたいからcreateじゃない%>
+<h2>支払方法</h2>       
+    <p><%=f.radio_button :payment_method,Order.payment_methods.key(0)%>
     
-    <%=f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+    <%=f.label :payment_method, Order.payment_methods_i18n[:credit_card] %></p>
     
-    <%=f.radio_button :payment_method, Order.payment_methods.key(1)%>
+    <p><%=f.radio_button :payment_method, Order.payment_methods.key(1)%>
     
-    <%=f.label :payment_method,Order.payment_methods_i18n[:transfer] %>
+    <%=f.label :payment_method,Order.payment_methods_i18n[:transfer] %></p>
     
-    <%=f.radio_button :select_address,"0"%>
-    <%=f.label :select_address,"ご自身の住所"%>
-    <%=current_customer.address%> <%# current_userと同じ:customerモデルに書いてあるカラムだったらaddressの部分を変えればなんでも取ってこれる%>
-    
-    <%=f.radio_button :select_address,"1"%><%#select_addressと"1"は他とかぶってなければ自分で決めていい%>
-    <%=f.label :select_address,"登録済み住所から選択"%>
-    <%=f.select:address_id, options_from_collection_for_select(Address.all,:id,:address_disply)%>　<%#idはどっから取ってきてる？%> <%#radio_buttonは3つとも名前揃える　それ以外はかえる<%=f.select:select_addressじゃだめ　labelはなんでもいい%>
+<h2>お届け先</h2>    
+    <p><%=f.radio_button :select_address,"0"%>
+    <%=f.label :select_address,"ご自身の住所"%><br>
+    〒<%=current_customer.address%><br><%# current_userと同じ:customerモデルに書いてあるカラムだったらaddressの部分を変えればなんでも取ってこれる%>
+       <%=current_customer.first_name+current_customer.last_name%></p>
+    <p><%=f.radio_button :select_address,"1"%><%#select_addressと"1"は他とかぶってなければ自分で決めていい%>
+    <%=f.label :select_address,"登録済み住所から選択"%><br>
+    <%=f.select:address_id, options_from_collection_for_select(Address.all,:id,:address_disply)%></p>　<%#idはどっから取ってきてる？%> <%#radio_buttonは3つとも名前揃える　それ以外はかえる<%=f.select:select_addressじゃだめ　labelはなんでもいい%>
     <%#=f.select:address_idの名前はコントローラの @address=Address.find(params[:order][:address_id])と合わせてあげる%>
-    <%=f.radio_button :select_address,"2"%>
-    <%=f.label :select_address,"新しいお届け先"%>
+    <p><%=f.radio_button :select_address,"2"%>
+    <%=f.label :select_address,"新しいお届け先"%></p>
     <table>
         <tr><th>郵便番号(ハイフンなし)</th><td><%=f.text_field:postal_code%></td></tr>
         <tr><th>住所</th><td><%=f.text_field:address%></td></tr>

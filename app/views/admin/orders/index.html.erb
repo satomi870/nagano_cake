@@ -15,7 +15,7 @@
             <td><%=link_to order.created_at,admin_order_path(order.id)%></td>
             <td><%=order.customer.last_name%></td> <%#customer使うにはbelongの記述必要#%>
             <td><%=order.order_details.sum(:amount)%></td>
-            <td><%=order.order_status%></td>
+            <td><%=order.order_status_i18n%></td>
         </tr>
     </tbody>
     <%end%>

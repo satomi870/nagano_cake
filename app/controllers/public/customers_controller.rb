@@ -22,7 +22,7 @@ class Public::CustomersController < ApplicationController
       @customer=current_customer
       @customer.update(is_deleted: true)
        reset_session
-       redirect_to public_homes_top_path
+       redirect_to root_path
   end
   
   def customer_params

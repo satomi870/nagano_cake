@@ -52,7 +52,7 @@ class Public::OrdersController < ApplicationController
   
   def index
     @customer=current_customer
-    @orders=@customer.orders.includes(:order_details,:items)
+    @orders=@customer.orders.includes(:order_details)
     #@orders=current_customer.orders この一文でいける　throughの記述さえすれば中間テーブル難しく考える必要はない
     #まずどのコントローラでもcurrent_customerはわざわざ定義しないで文に入れ込んじゃっていい　　モデルのthroughtの記述は絶対必要
      
