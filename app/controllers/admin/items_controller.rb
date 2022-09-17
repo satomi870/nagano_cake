@@ -6,13 +6,14 @@ class Admin::ItemsController < ApplicationController
   def create
     @item=Item.new(item_params)
     @item.save
-    redirect_to admin_items_path
-    #redirect_to admin_item_path(@item.id)
+    #redirect_to admin_items_path
+    redirect_to admin_item_path(@item.id)
   
   end  
 
   def index
-    @items=Item.all
+    @items=Item.page(params[:page])
+    #@items=Item.all
   end
 
   def show
@@ -26,8 +27,8 @@ class Admin::ItemsController < ApplicationController
   def update
     @item=Item.find(params[:id])
     @item.update(item_params)
-     redirect_to admin_items_path
-     # redirect_to admin_item_path(@item)
+     #redirect_to admin_items_path
+     redirect_to admin_item_path(@item)
     
   end  
   private

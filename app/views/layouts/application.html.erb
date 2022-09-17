@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> <%#ブートストラップ使う場合外す%>
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/801a1ac1e5.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> <%#ブートストラップ使う場合外す%>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
+     <%=link_to'ながのCAKE',root_path%>
       <% if admin_signed_in?%>
         <li>
           <%=link_to'商品一覧',admin_items_path%>
@@ -20,7 +22,7 @@
           <%=link_to'会員一覧',admin_customers_path%>
         </li>
         <li>
-          <%=link_to'注文履歴一覧',admin_orders_path%>
+          <%=link_to'注文履歴一覧',admin_root_path%>
         </li>
         <li>
           <%=link_to'ジャンル一覧',admin_genres_path%>
@@ -29,6 +31,7 @@
           <%=link_to"ログアウト",destroy_admin_session_path,method: :delete%>
         </li>
       <% elsif customer_signed_in?%>
+        <p>ようこそ、<%=current_customer.first_name%>さん!</p>
         <li>
            <%=link_to "マイページ",customers_path%>
        </li>

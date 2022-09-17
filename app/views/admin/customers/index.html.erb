@@ -1,18 +1,18 @@
 <h2>会員一覧</h2>
 
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
+            <th scope="col">会員ID</th>
+            <th scope="col">氏名</th>
+            <th scope="col">メールアドレス</th>
+            <th scope="col">ステータス</th>
         </tr>
     </thead>
     <%@customers.each do |customer| %>
     <tbody>
         <tr>
-            <td><%=customer.id%></td>
+            <td scope="row"><%=customer.id%></td>
             <td>
                 <%=link_to admin_customer_path(customer.id) do%>
                 <%=customer.last_name%><%=customer.first_name%>
@@ -29,3 +29,4 @@
     </tbody>
     <%end%>
 </table>
+<%= paginate @customers %>
