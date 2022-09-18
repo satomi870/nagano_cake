@@ -8,6 +8,8 @@
     <tr><th>配送先</th><td><%=@order.address%></td></tr>
     <tr><th>支払方法</th><td><%=@order.payment_method_i18n%></td></tr>
     <tr><th>注文ステータス</th>
+    <%if @order.order_status==1%>
+    <%end%>
     <td><%=form_with model: @order,url: admin_order_path do |f| %>
    <%=f.select :order_status,[["入金待ち","waiting"], ["入金確認","confirmation"], ["制作中","paid_up"],["発送準備中","preparing"],["発送済み","shipped"]]%></td>
    <td><%=f.submit '更新'%></td></tr>

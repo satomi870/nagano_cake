@@ -1,5 +1,15 @@
 <h2>配送先編集</h2>
 
+<% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%=form_with model: @address,url: address_path,method: :patch do |f| %>
 
  <p></p><tr><th>郵便番号(ハイフンなし)</th><td><%=f.text_field:postal_code%></td></tr></p>
