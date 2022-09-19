@@ -1,7 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  def index
-    #@orders=Order.all
-  end
+  
 
   def show
     @sum=0

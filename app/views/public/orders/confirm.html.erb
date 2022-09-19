@@ -1,20 +1,20 @@
 <h2>注文情報確認</h2>
 
-<table>
+<table class="table col-md-4">
     <thead>
         <tr>
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
+            <th scope="col">商品名</th>
+            <th scope="col">単価(税込)</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
         </tr>
     </thead>
     <tbody>
         <%@sum=0%>
         <% @cart_items.each do |cart_item| %>
         <tr>
-          <%#=image_tag cart_item.item.get_image(30,30)%>
-          <td><%=cart_item.item.name%></td> 
+          <td><%=image_tag cart_item.item.get_image(30,30)%>
+              <%=cart_item.item.name%></td> 
           <td><%=cart_item.item.with_tax_price%></td> 
           <td><%=cart_item.amount%></td>
           <td><%=cart_item.item.with_tax_price*cart_item.amount%></td>
@@ -24,15 +24,17 @@
     </tbody>       
   </table>
   
-  <table>
-      <tr><th>送料</th><td><%=@order.postage%></td></tr>
-      <tr><th>商品合計</th><td><%=@sum%></td></tr>
-      <tr><th>請求金額</th><td><%=@sum+@order.postage%></td></tr>
+  <table class="table col-md-2">
+      <tr><th scope="col">送料</th><td><%=@order.postage%></td></tr>
+      <tr><th scope="col">商品合計</th><td><%=@sum%></td></tr>
+      <tr><th scope="col">請求金額</th><td><%=@sum+@order.postage%></td></tr>
   </table>
-<tr><th><h3>支払方法</h3></th><td><%=@order.payment_method_i18n%></td></tr></p>
   
-<tr><th><h3>お届け先</h3></th><td>〒<%=@order.postal_code%><%=@order.address%><br><%=@order.name%></td></tr></p>
-
+<table>
+    <tr><th><h3>支払方法</h3></th><td><%=@order.payment_method_i18n%></td></tr>
+      
+    <tr><th><h3>お届け先</h3></th><td>〒<%=@order.postal_code%><%=@order.address%><br><%=@order.name%></td></tr>
+</table>
 
 <%=form_with model: @order,url: orders_path,method: :post do |f| %> 
  <%=f.hidden_field :payment_method,:value=>@order.payment_method%><%#=左が項目 valueが具体的な値というイメージ%>
@@ -40,7 +42,7 @@
  <%=f.hidden_field :address,:value=>@order.address%>
  <%=f.hidden_field :name,:value=>@order.name%>
  <%=f.hidden_field :billing_amount,:value=>@sum+@order.postage%>
- <%=f.submit '注文を確定する'%>
+ <%=f.submit '注文を確定する',class:"btn btn-sm btn-success"%>
 <%end%>
 <%#=37-44でやっと注文しているから３７−４４がすごい大事　３７−４４をcreateコントに送り注文しているからorderの注文履歴一覧がうまく表示されなかったら送るのがうまく行ってないということだからここを見る%>
 <%#=同じorderの確認画面では普通にうまく表示されたのはcreateする前でorderのcart_itemを参照していたから%>

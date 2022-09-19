@@ -1,34 +1,37 @@
 
 <div class="container">
-<h2>商品一覧</h2>
-
-<table class="table">
- <thead>
-　  <tr>
-　       <th scope="col">商品iD</th>
-　       <th scope="col">商品名</th>
-　       <th scope="col">税抜価格</th>
-　       <th scope="col">ジャンル</th>
-　       <th scope="col">ステータス</th>
-　   </tr> 
-　</thead>
-  <%@items.each do |item|%>
-  <tbody>
-      <tr>
-          <td scope="row"><%=item.id%></td>
-          <td><%=link_to item.name,admin_item_path(item.id)%></td>
-          <td><%=item.price%></td>
-          <td><%=item.genre.name%></td>
-          <td><%if item.is_active%>
-          <p>販売中</p>
-             <%else%>
-          <p>販売停止中</p>   
-          　<%end%>
-          </td>
-      </tr>
-  </tbody>
-  <%end%>
-</table>
-<%= paginate @items %>
-<%=link_to "商品新規登録",new_admin_item_path%>
+     <h2>商品一覧</h2>
+    <div class="row justify-content-md-center">
+         <div class="col-md-10">    
+            <table class="table">
+             <thead>
+                <tr>
+                     <th scope="col">商品ID</th>
+                     <th scope="col">商品名</th>
+                     <th scope="col">税抜価格</th>
+                     <th scope="col">ジャンル</th>
+                     <th scope="col">ステータス</th>
+                </tr> 
+             <thead>
+              <%@items.each do |item|%>
+              <tbody>
+                  <tr>
+                      <td scope="row"><%=item.id%></td>
+                      <td><%=link_to item.name,admin_item_path(item.id)%></td>
+                      <td><%=item.price%></td>
+                      <td><%=item.genre.name%></td>
+                      <td><%if item.is_active%>
+                      <p>販売中</p>
+                         <%else%>
+                      <p>販売停止中</p>   
+                         <%end%>
+                      </td>
+                  </tr>
+              </tbody>
+              <%end%>
+            </table>
+            <%= paginate @items %>
+            <%=link_to "商品新規登録",new_admin_item_path,class:"btn btn-sm btn-success"%>
+        </div>    
+    </div>
 </div>

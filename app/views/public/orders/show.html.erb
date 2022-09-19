@@ -1,26 +1,23 @@
 
-<div class="container">
-    <div class="row">
+
     
 <h2>注文履歴詳細</h2>
 
 <h4>注文情報</h4>
-<table>
-    <tr><th>注文日</th><td><%=@order.created_at.strftime('%Y/%m/%d')%></td></tr>
-    <tr><th>配送先</th><td>〒<%=@order.postal_code%><br><%=@order.address%><br><%=@order.name%></td></tr>
-    <tr><th>支払方法</th><td><%=@order.payment_method_i18n%></td></tr>
-    <tr><th>ステータス</th><td><%=@order.order_status_i18n%></td></tr>
+<table class="table col-md-4">
+    <tr> <th scope="col">注文日</th><td><%=@order.created_at.strftime('%Y/%m/%d')%></td></tr>
+    <tr> <th scope="col">配送先</th><td>〒<%=@order.postal_code%><br><%=@order.address%><br><%=@order.name%></td></tr>
+    <tr> <th scope="col">支払方法</th><td><%=@order.payment_method_i18n%></td></tr>
+    <tr> <th scope="col">ステータス</th><td><%=@order.order_status_i18n%></td></tr>
 </table>
 
 
 <h4>注文内容</h4>
-<table>
-    <thead>
-        <tr>
-           <th>商品</th>
-           <th>単価(税込)</th>
-           <th>個数</th>
-           <th>小計</th>
+<table class="table col-md-6">
+            <th scope="col">商品</th>
+            <th scope="col">単価(税込)</th>
+            <th scope="col">個数</th>
+            <th scope="col">小計</th>
         </tr>
     </thead>
     <tbody>
@@ -38,12 +35,12 @@
 </table>  
 
     <h4>請求情報</h4>
-    <table>
-        <tr><th>商品合計</th><td><%=@sum%></td></tr>
-        <tr><th>配達料</th><td><%=@order_postage%></td></tr>
-        <tr><th>ご請求額</th><td><%=@sum+@order_postage%></td></tr>
+    <table class="table col-md-2">
+        <tr> <th scope="col">商品合計</th><td><%=@sum%></td></tr>
+        <tr> <th scope="col">配達料</th><td><%=@order_postage%></td></tr>
+        <tr> <th scope="col">ご請求額</th><td><%=@sum+@order_postage%></td></tr>
     </table>
 
 
 
-</div>
+

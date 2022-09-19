@@ -3,10 +3,7 @@ Rails.application.routes.draw do
  
  
   
- 
-  namespace :admin do
-    get 'homes/top'
-  end
+
   scope module: :public do
     root to:'homes#top' #どういうURLに飛ぶかは決まってるからアクション先だけ書く
     get 'about'=>'homes#about'#左側は勝手に決めていい

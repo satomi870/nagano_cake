@@ -24,7 +24,7 @@
     <p><%=f.radio_button :select_address,"0"%>
     <%=f.label :select_address,"ご自身の住所"%><br>
     〒<%=current_customer.address%><br><%# current_userと同じ:customerモデルに書いてあるカラムだったらaddressの部分を変えればなんでも取ってこれる%>
-       <%=current_customer.first_name+current_customer.last_name%></p>
+       <%=current_customer.last_name+current_customer.first_name%></p>
     <p><%=f.radio_button :select_address,"1"%><%#select_addressと"1"は他とかぶってなければ自分で決めていい%>
     <%=f.label :select_address,"登録済み住所から選択"%><br>
     <%=f.select:address_id, options_from_collection_for_select(Address.all,:id,:address_disply)%></p>　<%#idはどっから取ってきてる？%> <%#radio_buttonは3つとも名前揃える　それ以外はかえる<%=f.select:select_addressじゃだめ　labelはなんでもいい%>

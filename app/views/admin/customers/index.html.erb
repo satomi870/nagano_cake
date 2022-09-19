@@ -1,32 +1,38 @@
-<h2>会員一覧</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">会員ID</th>
-            <th scope="col">氏名</th>
-            <th scope="col">メールアドレス</th>
-            <th scope="col">ステータス</th>
-        </tr>
-    </thead>
-    <%@customers.each do |customer| %>
-    <tbody>
-        <tr>
-            <td scope="row"><%=customer.id%></td>
-            <td>
-                <%=link_to admin_customer_path(customer.id) do%>
-                <%=customer.last_name%><%=customer.first_name%>
+<div class="container">
+     <h2>会員一覧</h2>
+    <div class="row justify-content-md-center">
+        <div class="col-md-10">    
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">会員ID</th>
+                        <th scope="col">氏名</th>
+                        <th scope="col">メールアドレス</th>
+                        <th scope="col">ステータス</th>
+                    </tr>
+                </thead>
+                <%@customers.each do |customer| %>
+                <tbody>
+                    <tr>
+                        <td scope="row"><%=customer.id%></td>
+                        <td>
+                            <%=link_to admin_customer_path(customer.id) do%>
+                            <%=customer.last_name%><%=customer.first_name%>
+                            <%end%>
+                        </td>    
+                        <td><%=customer.email%></td>
+                        <% if customer.is_deleted%>
+                        <td>退会</td>
+                        <%else%>
+                        <td>有効</td>
+                        <%end%>
+                        
+                    </tr>
+                </tbody>
                 <%end%>
-            </td>    
-            <td><%=customer.email%></td>
-            <% if customer.is_deleted%>
-            <td>退会</td>
-            <%else%>
-            <td>有効</td>
-            <%end%>
-            
-        </tr>
-    </tbody>
-    <%end%>
-</table>
-<%= paginate @customers %>
+           </table>
+           <%= paginate @customers %>
+       </div>
+    </div>      
+</div>
