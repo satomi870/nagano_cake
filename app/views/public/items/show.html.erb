@@ -9,8 +9,8 @@
  <%= f.hidden_field :item_id, :value => @item.id%>
  <%= f.select :amount, *[1..100] %>
  <% if @item.is_active%>
- <%=f.submit'カートに入れる'%>
+     <%=f.submit'カートに入れる'%>
  <%else%>
- <p>売り切れ</p>
+     <p>売り切れ</p>
  <%end%>
 <%end%> 

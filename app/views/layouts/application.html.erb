@@ -35,7 +35,9 @@
               <%=link_to"ログアウト",destroy_admin_session_path,method: :delete,class: 'nav-link text-dark'%>
             </li>
           <% elsif customer_signed_in?%>
-            <p>ようこそ、<%=current_customer.first_name%>さん!</p>
+            <li>
+            ようこそ、<%=current_customer.first_name%>さん!
+            </li>
             <li>
               <%=link_to "マイページ",customers_path,class: 'nav-link text-dark'%>
             </li>
